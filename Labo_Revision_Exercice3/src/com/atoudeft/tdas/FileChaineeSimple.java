@@ -116,8 +116,22 @@ public class FileChaineeSimple{
      * 
      */	
     public void inverser() {
-		//à compléter :
-		
+		if(this.taille() <= 1){
+			return;
+		}
+		Noeud previous = null;
+		Noeud current = this.premier;
+		Noeud next = null;
+
+		this.dernier = this.premier;
+		while(current != null){
+			next = current.suivant;
+			current.suivant = previous;
+			previous = current;
+			current = next;
+		}
+
+		this.premier = previous;
 	}
 	
     private class Noeud {

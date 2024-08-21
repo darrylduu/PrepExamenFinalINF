@@ -7,27 +7,27 @@ import observer.Observable;
 
 /**
  * @author A. Toudeft
- * @since 2022
  * @version 1.0
+ * @since 2022
  */
-public class PlanDeJeu {
-
+public class PlanDeJeu extends Observable{
     private List<Carre> carres;
 
     public PlanDeJeu() {
-    	//à compléter :
-    	
+        carres = new ArrayList<>();
     }
+
     public void ajouter(Carre c) {
-        //à compléter :
-    	
+        carres.add(c);
+        this.notifierObservateurs();
     }
-    
+
     public List<Carre> getCarres() {
-		return carres;
-	}
+        return carres;
+    }
+
     public void vider() {
-    	//à compléter :
-    	
-    }    
+        carres.clear();
+        this.notifierObservateurs();
+    }
 }

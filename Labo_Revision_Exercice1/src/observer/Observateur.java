@@ -1,7 +1,7 @@
 package observer;
 
 public interface Observateur {
-	//Permet à l'observateur de se mettre à jour lorsqu'il est notifié par
+	//Permet ï¿½ l'observateur de se mettre ï¿½ jour lorsqu'il est notifiï¿½ par
 	//l'objet Observable qu'il observe :
 	public void seMettreAJour(Observable observable);
 }

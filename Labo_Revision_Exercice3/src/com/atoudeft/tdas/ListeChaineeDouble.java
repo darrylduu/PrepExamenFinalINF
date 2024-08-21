@@ -256,9 +256,24 @@ public class ListeChaineeDouble {
      * 
      */	
 	public void inverser() {
-		//à compléter :
-		
+		if(this.taille() <= 1){
+			return;
+		}
+		Noeud current = this.tete;
+		Noeud temp = null;
+
+		while(current != null){
+			temp = current.precedent;
+			current.precedent = current.suivant;
+			current.suivant = temp;
+			current = current.precedent;
+		}
+
+		temp = this.tete;
+		this.tete = this.fin;
+		this.fin = temp;
 	}
+
 	private class Noeud {
 		public Object donnee;
 		public Noeud suivant;

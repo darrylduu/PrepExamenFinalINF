@@ -1,9 +1,16 @@
 package com.atoudeft.programme;
 
 
-import java.awt.EventQueue;
+import com.atoudeft.controleur.EcouteurAction;
+import com.atoudeft.modele.PlanDeJeu;
+import com.atoudeft.vue.Panneau;
+import com.atoudeft.vue.PanneauDeSaisie;
 
-import javax.swing.JFrame;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.*;
 
 /**
  * @author A. Toudeft
@@ -11,8 +18,14 @@ import javax.swing.JFrame;
  * @version 1.0
  */
 public class Fenetre extends JFrame {
+	private PanneauDeSaisie panneauDeSaisie;
+	private Panneau panneau;
 
-	//à compléter :
+	private PlanDeJeu planDeJeu;
+
+	private EcouteurAction ecouteurAction;
+
+	private JButton bAjouter, bEffacer;
 
 	public Fenetre() {
 		initialiserComposants();
@@ -23,8 +36,33 @@ public class Fenetre extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	private void initialiserComposants() {
+		planDeJeu = new PlanDeJeu();
 
-		//à compléter :
+		panneauDeSaisie = new PanneauDeSaisie();
+		panneau = new Panneau(planDeJeu);
+
+		panneau.setBackground(Color.WHITE);
+
+		bAjouter = new JButton("Ajouter");
+		bEffacer = new JButton("Effacer");
+
+		JPanel pNord = new JPanel();
+		pNord.add(panneauDeSaisie);
+		pNord.add(bAjouter);
+		pNord.add(bEffacer);
+
+		ecouteurAction = new EcouteurAction(planDeJeu, panneauDeSaisie);
+
+		bAjouter.addActionListener(ecouteurAction);
+		bEffacer.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				planDeJeu.vider();
+			}
+		});
+
+		this.add(pNord, BorderLayout.NORTH);
+		this.add(panneau, BorderLayout.CENTER);
 	}
 
 	/**

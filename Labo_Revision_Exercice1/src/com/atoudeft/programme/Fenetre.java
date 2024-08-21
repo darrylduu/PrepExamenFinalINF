@@ -1,5 +1,9 @@
 package com.atoudeft.programme;
 
+import com.atoudeft.controleur.EcouteurClavier;
+import com.atoudeft.modele.Carre;
+import com.atoudeft.vue.Panneau;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -12,6 +16,9 @@ import javax.swing.JFrame;
  * @version 1.0
  */
 public class Fenetre extends JFrame {
+	private Carre carre;
+	private Panneau panneau;
+	private EcouteurClavier ecouteurClavier;
 
 	public Fenetre() {
 		initialiserComposants();
@@ -22,7 +29,15 @@ public class Fenetre extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	private void initialiserComposants() {
+		carre = new Carre();
 
+		panneau = new Panneau(carre);
+		panneau.setBackground(Color.WHITE);
+
+		ecouteurClavier = new EcouteurClavier(carre, panneau);
+
+		this.addKeyListener(ecouteurClavier);
+		this.add(panneau, BorderLayout.CENTER);
 	}
 
 	/**

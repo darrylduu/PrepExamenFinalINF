@@ -5,6 +5,8 @@
  */
 package com.atoudeft.modele;
 
+import observer.Observable;
+
 import java.awt.Color;
 
 /**
@@ -12,7 +14,7 @@ import java.awt.Color;
  * @since 2015
  * @version 1.0
  */
-public class Carre {
+public class Carre extends Observable {
     private int cote = 50;
     private int posX, posY;
     private Color couleur = Color.RED;
@@ -23,6 +25,7 @@ public class Carre {
 
     public void setPosX(int posX) {
         this.posX = posX;
+        this.notifierObservateurs();
     }
 
     public int getPosY() {
@@ -31,6 +34,7 @@ public class Carre {
 
     public void setPosY(int posY) {
         this.posY = posY;
+        this.notifierObservateurs();
     }
 
     public Color getCouleur() {
@@ -50,14 +54,18 @@ public class Carre {
     }
     public void moveRight() {
         this.posX++;
+        this.notifierObservateurs();
     }
     public void moveLeft() {
         this.posX--;
+        this.notifierObservateurs();
     }
     public void moveDown() {
         this.posY++;
+        this.notifierObservateurs();
     }
     public void moveUp() {
         this.posY--;
+        this.notifierObservateurs();
     }
 }
