@@ -1,24 +1,34 @@
 public class Demo {
     public static void main(String[] args) {
-        Personne p1 = new Personne("Alice", "Paris");
-        Personne p2 = new Personne("Bob", "Paris");
-        Personne p3 = new Personne("Alice", "Paris");
+        // Case 1: No students in the Etablissement
+        Etablissement etab1 = new Etablissement("Etab1");
+        etab1.ajouter(new Personne("Alice", "Paris"));
+        etab1.ajouter(new Personne("Bob", "Paris"));
+        System.out.println("Case 1: No students");
+        System.out.println("Number of students: " + etab1.getNbEtudiants());
+        System.out.println("Number of members in Paris: " + etab1.getNbMembresParVille("Paris"));
+        try {
+            System.out.println("Average student grade: " + etab1.getMoyenneEtudiants());
+        } catch (IllegalStateException e) {
+            System.out.println("Average student grade: " + e.getMessage());
+        }
 
-        Etudiant e1 = new Etudiant("Alice", "Paris", "UQAM", 90);
-        Etudiant e2 = new Etudiant("Bob", "Paris", "UQAM", 80);
-        Etudiant e3 = new Etudiant("Alice", "Paris", "UQAM", 90);
+        // Case 2: Some students in the Etablissement
+        Etablissement etab2 = new Etablissement("Etab2");
+        etab2.ajouter(new Personne("Alice", "Paris"));
+        etab2.ajouter(new Etudiant("Bob", "Paris", "UQAM", 80));
+        System.out.println("\nCase 2: Some students");
+        System.out.println("Number of students: " + etab2.getNbEtudiants());
+        System.out.println("Number of members in Paris: " + etab2.getNbMembresParVille("Paris"));
+        System.out.println("Average student grade: " + etab2.getMoyenneEtudiants());
 
-        Etablissement etab = new Etablissement("Balls");
-        etab.ajouter(p1);
-        etab.ajouter(p2);
-        etab.ajouter(p3);
-        etab.ajouter(e1);
-        etab.ajouter(e2);
-        etab.ajouter(e3);
-
-
-        System.out.println(etab.getNbEtudiants());
-        System.out.println(etab.getNbMembresParVille("Paris"));
-        System.out.println(etab.getMoyenneEtudiants());
+        // Case 3: All students in the Etablissement
+        Etablissement etab3 = new Etablissement("Etab3");
+        etab3.ajouter(new Etudiant("Alice", "Paris", "UQAM", 90));
+        etab3.ajouter(new Etudiant("Bob", "Paris", "UQAM", 80));
+        System.out.println("\nCase 3: All students");
+        System.out.println("Number of students: " + etab3.getNbEtudiants());
+        System.out.println("Number of members in Paris: " + etab3.getNbMembresParVille("Paris"));
+        System.out.println("Average student grade: " + etab3.getMoyenneEtudiants());
     }
 }

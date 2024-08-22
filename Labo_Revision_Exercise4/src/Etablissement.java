@@ -50,23 +50,26 @@ public class Etablissement {
     }
 
     public double getMoyenneEtudiants() {
-        double note = 0;
-        int nbEtudiant = 0;
-        Personne p;
-
-        ListIterator<Personne> itPersonne = membres.listIterator();
-        while(itPersonne.hasNext()) {
-            p = itPersonne.next();
-            if(p instanceof Etudiant) {
-                note += ((Etudiant) p).getNote();
-                nbEtudiant++;
+        double somme = 0;
+        int n = 0;
+//        Personne p;
+//        ListIterator<Personne> it = membres.listIterator();
+//        while (it.hasNext()) {
+//            p = it.next();
+//            if (p instanceof Etudiant) {
+//                somme += ((Etudiant) p).getNote();
+//                n++;
+//            }
+//        }
+        for(Personne p : membres){
+            if (p instanceof Etudiant){
+                somme += ((Etudiant) p).getNote();
+                n++;
             }
         }
-        if (membres.size() == 0) { //Ou: if (membres.isEmpty()) {
+        if (n == 0)
             throw new IllegalStateException("Aucun étudiant");
-        }
-
-        return note / nbEtudiant;
+        return somme/n;
     }
 
     public void toutLeMondeDemenageALaval() {
